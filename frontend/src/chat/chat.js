@@ -1,4 +1,3 @@
-
 //eslint-disable-
 import "./chat.scss";
 import { to_Decrypt, to_Encrypt } from "../aes.js";
@@ -11,7 +10,7 @@ function Chat({ username, roomname, socket }) {
   const [messages, setMessages] = useState([]);
 
   const dispatch = useDispatch();
-  
+
   const dispatchProcess = (encrypt, msg, cipher) => {
     dispatch(process(encrypt, msg, cipher));
   };
@@ -20,8 +19,9 @@ function Chat({ username, roomname, socket }) {
     socket.on("message", (data) => {
       //decypt the message
       const ans = to_Decrypt(data.text, data.username);
+      console.log("sample ", data, ans);
       dispatchProcess(false, ans, data.text);
-      console.log(ans);
+      //console.log(ans);
       let temp = messages;
       temp.push({
         userId: data.userId,
@@ -37,6 +37,7 @@ function Chat({ username, roomname, socket }) {
     if (text !== "") {
       //encrypt the message here
       const ans = to_Encrypt(text);
+      console.log(text);
       socket.emit("chat", ans);
       setText("");
     }
@@ -49,7 +50,7 @@ function Chat({ username, roomname, socket }) {
 
   useEffect(scrollToBottom, [messages]);
 
-  console.log(messages, "mess");
+ // console.log(messages, "mess");
 
   return (
     <div className="chat">
