@@ -1,4 +1,6 @@
-import "./Chat.scss";
+
+//eslint-disable-
+import "./chat.scss";
 import { to_Decrypt, to_Encrypt } from "../aes.js";
 import { process } from "../store/action/index";
 import React, { useState, useEffect, useRef } from "react";
@@ -28,6 +30,7 @@ function Chat({ username, roomname, socket }) {
       });
       setMessages([...temp]);
     });
+    // eslint-disable-next-line
   }, [socket]);
 
   const sendData = () => {
