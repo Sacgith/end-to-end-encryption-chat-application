@@ -19,7 +19,7 @@ function Chat({ username, roomname, socket }) {
     socket.on("message", (data) => {
       //decypt the message
       const ans = to_Decrypt(data.text, data.username);
-      console.log("sample ", data, ans);
+     // console.log("sample ", data, ans);
       dispatchProcess(false, ans, data.text);
       //console.log(ans);
       let temp = messages;
@@ -37,7 +37,7 @@ function Chat({ username, roomname, socket }) {
     if (text !== "") {
       //encrypt the message here
       const ans = to_Encrypt(text);
-      console.log(text);
+     // console.log(text);
       socket.emit("chat", ans);
       setText("");
     }
